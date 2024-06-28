@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game Multi Player with AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <img id="magicBerry" src="./assets/magic_berry.png" alt="" />
+    <img id="mushroomSprite" src="./assets//mushroom_sprite.png" alt="" />
+    <img
+      id="topBackgroundImg"
+      src="./assets/forest_margin_repeat_1600x600.png"
+      alt=""
+    />
+    <img id="foodSprite" class="foodSprite" src="./assets/food.png" alt="" />
+
+    <img id="snakeCorgi" src="./assets/snake_corgi.png" alt="" />
+    <img id="voidWolf" src="./assets/void_wolf.png" alt="" />
+    <img id="stickySaberHound" src="./assets/sticky_saberhound.png" alt="" />
+    <img id="spectralSchnoodle" src="./assets/spectral_schnoodle.png" alt="" />
+
+    <audio id="bite1" src="./sounds/bite1.mp3"></audio>
+    <audio id="bite2" src="./sounds/bite2.mp3"></audio>
+    <audio id="bite3" src="./sounds/bite3.mp3"></audio>
+    <audio id="bite4" src="./sounds/bite4.mp3"></audio>
+    <audio id="bite5" src="./sounds/bite5.mp3"></audio>
+    <audio id="badFood" src="./sounds/bad_food.mp3"></audio>
+    <audio id="button" src="./sounds/button.mp3"></audio>
+    <audio id="startSound" src="./sounds/start.mp3"></audio>
+    <audio id="restartSound" src="./sounds/restart.mp3"></audio>
+    <audio id="win" src="./sounds/win.mp3"></audio>
+
+    <canvas class="canvas1" id="canvas1"> </canvas>
+
+    <div id="gameOverScreen" class="gameOverScreen"></div>
+
+    <div class="controls" id="controls">
+      <div class="buttons" class="buttons">
+        <button id="startBtn" class="startBtn">Start</button>
+        <button id="debugBtn" class="debugBtn">Debug</button>
+        <button id="fullScreenBtn" class="fullScreenBtn">Full Screen</button>
+      </div>
+      <div id="scoreScreen" class="scoreScreen">
+        <div id="left" class="left">
+          <p id="scoreBoard1" class="scoreBoard1">Player 1</p>
+          <p id="scoreBoard2" class="scoreBoard2">Player 2</p>
+        </div>
+        <div id="right" class="right">
+          <p id="scoreBoard3" class="scoreBoard3">Player 3</p>
+          <p id="scoreBoard4" class="scoreBoard4">Player 4</p>
+        </div>
+      </div>
+      <div id="gameMenu" class="gameMenu">
+        <div id="message1" class="message1">Welcome to the battle arena !</div>
+        <div id="message2" class="message2">Choose your fighters</div>
+        <div id="playerChoice" class="playerChoice">
+          <div class="player1">
+            <p class="playerLabel">Player 1</p>
+            <label for="player1controls">Controls</label>
+            <select name="player1controls" id="player1controls">
+              <option value="arrows">KayBoard Arrows</option>
+              <option value="ai">Computer AI</option>
+            </select>
+            <div>
+              <label for="player1Character">Character</label>
+              <select name="player1Character" id="player1Character">
+                <option value="snakeCorgi" selected>Snake Corgi</option>
+                <option value="spectralSchnoodle">Spectral Schnoodle</option>
+                <option value="voidWolf">Void Wolf</option>
+                <option value="stickySaberHound">Sticky Saber Hound</option>
+              </select>
+            </div>
+            <div>
+              <label for="player1name">Name</label>
+              <input type="text" id="player1name" value="Ron" />
+            </div>
+          </div>
+          <div class="player2">
+            <p class="playerLabel">Player 2</p>
+            <label for="player2controls">Controls</label>
+            <select name="player2controls" id="player2controls">
+              <option value="wsad">KayBoard WSAD</option>
+              <option value="ai">Computer AI</option>
+            </select>
+            <div>
+              <label for="player2Character">Character</label>
+              <select name="player2Character" id="player2Character">
+                <option value="snakeCorgi">Snake Corgi</option>
+                <option value="spectralSchnoodle" selected>
+                  Spectral Schnoodle
+                </option>
+                <option value="voidWolf">Void Wolf</option>
+                <option value="stickySaberHound">Sticky Saber Hound</option>
+              </select>
+            </div>
+            <div>
+              <label for="player2name">Name</label>
+              <input type="text" id="player2name" value="Danger Noddle" />
+            </div>
+          </div>
+          <div class="player3">
+            <p class="playerLabel">Player 3</p>
+            <label for="player3controls">Controls</label>
+            <select name="player3controls" id="player3controls">
+              <option value="ai">Computer AI</option>
+            </select>
+            <div>
+              <label for="player3Character">Character</label>
+              <select name="player3Character" id="player3Character">
+                <option value="snakeCorgi">Snake Corgi</option>
+                <option value="spectralSchnoodle">Spectral Schnoodle</option>
+                <option value="voidWolf" selected>Void Wolf</option>
+                <option value="stickySaberHound">Sticky Saber Hound</option>
+              </select>
+            </div>
+            <div>
+              <label for="player3name">Name</label>
+              <input type="text" id="player3name" value="Ekans" />
+            </div>
+          </div>
+          <div class="player4">
+            <p class="playerLabel">Player 4</p>
+            <label for="player4controls">Controls</label>
+            <select name="player4controls" id="player4controls">
+              <option value="ai">Computer AI</option>
+            </select>
+            <div>
+              <label for="player4Character">Character</label>
+              <select name="player4Character" id="player4Character">
+                <option value="snakeCorgi">Snake Corgi</option>
+                <option value="spectralSchnoodle">Spectral Schnoodle</option>
+                <option value="voidWolf">Void Wolf</option>
+                <option value="stickySaberHound" selected>
+                  Sticky Saber Hound
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="player4name">Name</label>
+              <input type="text" id="player4name" value="Hagini" />
+            </div>
+          </div>
+        </div>
+        <label for="difficulty">Difficulty</label>
+        <select name="difficulty" id="difficulty">
+          <option value="40">Slow</option>
+          <option value="20" selected>Challenging</option>
+          <option value="3">Ultimate</option>
+        </select>
+      </div>
+    </div>
+
+    <canvas id="canvas2" class="canvas2"></canvas>
+
+    <script src="sound.js"></script>
+    <script src="particle.js"></script>
+    <script src="background.js"></script>
+    <script src="ui.js"></script>
+    <script src="food.js"></script>
+    <script src="player.js"></script>
+    <script src="utilities.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
